@@ -5,10 +5,10 @@
 #
 
 # Pull base image.
-#FROM ubuntu:14.04
+FROM ubuntu:14.04
 ## use docker.cn
-FROM docker.cn/docker/ubuntu:latest
-MAINTAINER Nyk Ma <moe@nayuki.info>
+#FROM docker.cn/docker/ubuntu:latest
+MAINTAINER lokiluo <lokinell@gmail.com>
 
 # Install.
 ## use cn source
@@ -24,6 +24,9 @@ RUN \
 COPY addUser.js /root/addUser.js
 COPY start.sh /root/start.sh
 
+COPY leanote.tar.gz /root/leanote.tar.gz
+COPY mongodb.tgz /root/mongodb.tgz
+
 # Set environment variables.
 ENV HOME /root
 ENV GOPATH /root/leanote/bin
@@ -32,13 +35,12 @@ ENV GOPATH /root/leanote/bin
 WORKDIR /root
 
 # Download leanote and mongodb.
-RUN wget https://github.com/leanote/leanote/releases/download/1.0-beta.3/leanote-linux-x86_64.v1.0-beta.3.bin.tar.gz -O leanote.tar.gz && \
-    wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.6.6.tgz -O mongodb.tgz
-
+#RUN wget http://downloads.sourceforge.net/project/leanote-bin/1.4.2/leanote-linux-amd64-v1.4.2.bin.tar.gz -O leanote.tar.gz && \
+#    wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-2.7.8.tgz -O mongodb.tgz
 # Extract them.
 RUN tar -xvf leanote.tar.gz && \
     tar -xvf mongodb.tgz
-RUN ["/bin/bash", "-c", "mv /root/mongodb-linux-x86_64-2.6.6/bin/* /usr/local/bin/"]
+RUN ["/bin/bash", "-c", "mv /root/mongodb-linux-x86_64-ubuntu1404-2.7.8/bin/* /usr/local/bin/"]
 
 # Clean
 RUN rm leanote.tar.gz && \

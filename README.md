@@ -8,7 +8,7 @@
 
 ```bash
 git clone https://github.com/moenayuki/leanote-dockerfile.git && cd leanote-dockerfile
-docker build --tag="leanote:1.0b3" .
+docker build --tag="leanote:1.4.2" .
 ```
 
 ## Prepare
